@@ -1,6 +1,6 @@
 {
-  "name": "@codicate/react-easy-sort",
-  "version": "0.2.4",
+  "name": "@decor/react-easy-sort",
+  "version": "0.4.0",
   "description": "A React component to sort items in lists or grids",
   "homepage": "https://ricardo-ch.github.io/react-easy-sort/",
   "keywords": [
