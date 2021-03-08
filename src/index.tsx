@@ -7,6 +7,8 @@ import { Point } from './types'
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode
+  /** Called when the user starts a sorting gesture. */
+  onSortStart: () => void
   /** Called when the user finishes a sorting gesture. */
   onSortEnd: (oldIndex: number, newIndex: number) => void
   /** Class applied to the item being dragged */
