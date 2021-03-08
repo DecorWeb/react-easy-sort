@@ -15,7 +15,7 @@
     "url": "https://github.com/ricardo-ch/react-easy-sort"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "http://18.196.24.199:4873"
   },
   "author": "Ricardo.ch",
   "license": "MIT",
