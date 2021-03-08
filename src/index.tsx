@@ -22,7 +22,7 @@ type Context = {
 
 const SortableListContext = React.createContext<Context | undefined>(undefined)
 
-const SortableList = ({ children, onSortEnd, draggedItemClassName, ...rest }: Props) => {
+const SortableList = ({ children, onSortStart, onSortEnd, draggedItemClassName, ...rest }: Props) => {
   // this array contains the elements than can be sorted (wrapped inside SortableItem)
   const itemsRef = React.useRef<HTMLElement[]>([])
   // this array contains the coordinates of each sortable element (only computed on dragStart and used in dragMove for perf reason)
@@ -116,6 +116,9 @@ const SortableList = ({ children, onSortEnd, draggedItemClassName, ...rest }: Pr
       if (window.navigator.vibrate) {
         window.navigator.vibrate(100)
       }
+      if(onSortStart){
+        onSortStart();
+      }
     },
     onMove: ({ point, pointInWindow }) => {
       updateTargetPosition(point)
@@ -183,12 +186,10 @@ const SortableList = ({ children, onSortEnd, draggedItemClassName, ...rest }: Pr
 
         const targetIndex = lastTargetIndexRef.current
         if (targetIndex !== undefined) {
-          if (sourceIndex !== targetIndex) {
-            // sort our internal items array
-            itemsRef.current = arrayMove(itemsRef.current, sourceIndex, targetIndex)
-            // let the parent know
-            onSortEnd(sourceIndex, targetIndex)
-          }
+          // sort our internal items array
+          itemsRef.current = arrayMove(itemsRef.current, sourceIndex, targetIndex)
+          // let the parent know
+          onSortEnd(sourceIndex, targetIndex)
         }
       }
       sourceIndexRef.current = undefined
